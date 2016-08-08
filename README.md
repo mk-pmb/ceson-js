@@ -33,6 +33,11 @@ Yet another JSON derivative. Mostly like JSON, but:
     inherited from ECMAScript.
 
 
+Related projects
+================
+  * [strip-json-comments](https://github.com/sindresorhus/strip-json-comments)
+
+
 ceson-js parser
 ===============
 
