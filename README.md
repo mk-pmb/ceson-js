@@ -1,7 +1,10 @@
 ﻿
 CESON: Commented ECMAScript Object Notation
 ===========================================
-Yet another JSON derivative. Mostly like JSON, but:
+Yet another JSON derivative.
+(For comparison with others, see below.)
+
+CESON is mostly like JSON, but:
 
   * It will always be a strict subset of ECMAScript.
   * Definition of whitespace and acceptable line endings is inherited from
@@ -35,6 +38,8 @@ Yet another JSON derivative. Mostly like JSON, but:
 
 Related projects
 ================
+  * [JSONv5](http://json5.org/): A lot more flexible, and thus a lot harder
+    to safely handle with low-level tools like `sed`.
   * [strip-json-comments](https://github.com/sindresorhus/strip-json-comments)
 
 
