@@ -1,0 +1,13 @@
+﻿{ "": "family", "id": "Felidae", "wp-en-oldid": 742264157,
+  "Pantherinae": {
+    "": "subfamily", "wp-en-oldid": 736789580,
+    "Panthera": {}
+  },
+  "Felinae": {
+    "": "subfamily", "wp-en-oldid": 740542430,
+    "Lynx": {
+      "": "genus", "wp-en-oldid": 743398978,
+      "rufus": { "": "species", "wp-en-oldid": 742216395 }
+    }
+  }
+}
