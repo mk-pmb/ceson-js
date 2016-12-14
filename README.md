@@ -11,35 +11,45 @@ CESON is mostly like JSON, but:
     the ECMAScript spec, to avoid problems with Unicode line terminators.
     * For increased compatibility, outside of values, CESON parsers should
       ignore characters that are whitespace in JSON but not in ECMAScript.
-    * CESON defines `simplespace` as any combination of `\t \r\n`
-      (U+:TODO:).
+    * CESON defines "simplespace" as any combination of `\t \r\n`
+      (U+0009, U+0020, U+000D, U+000A).
+    * A "blank line" is a line that consists entirely of an optional BOM
+      (only valid if it's the first line) and optional simplespace.
+  * More definitions:
+    * "Line text" is the minimal continuous substring of a line that precludes
+      it from being a blank line. (Everything except first line BOM, leading
+      and trailing simplespace.) Blank lines don't have line text.
+    * A "container head" is any bracket character that, in JSON, could mark
+      the start of a data container. (At time of writing: `[` and `{`)
+      A "container tail" is any bracket character that, in JSON, could mark
+      the end of a data container. (At time of writing: `]` and `}`)
   * Line comments and block comments work as in ECMAScript, but with some
     restrictions for easier parsing.
-    * In the line where a comment starts, in front of that comment,
-      the only acceptable characters are:
-      * simplespace
-      * byte order marks (so you don't have to care whether they are whitespace)
-      * commas and
-      * opening brackets that, in JSON, could open a data container.
-    * In the line where a block comment ends, any remainder of that line may
-      only consist of
-      * simplespace
-      * commas and
-      * closing brackets that, in JSON, could close a data container.
+    * In lines where a comment starts, line text in front of that line's
+      first comment is restricted to any combination of simplespace, commas,
+      and container heads.
+    * The end of each block comment can be followed by optional simplespace,
+      after which it must be followed by either:
+      * end of line (comment is the last part of line text), or
+      * start of another block comment, or
+      * any combination of simplespace, commas, and container tails.
   * You can continue a string in a new line by adding its parts with the plus
     operator (`+`).
-    * Except for simplespace and byte order marks, the plus sign has to be
-      at the start or end of a line. A line can have plus signs on both sides.
-    * Whitespace after the plus sign is allowed only if that whitespace is
-      followed by a string part.
-  * The validity and effect of commas at the end of data containers is
-    inherited from ECMAScript.
+    * The plus sign has to be at the start or end of line text.
+      A line can have plus signs on both sides of its line text.
+  * Commas at the end of data containers, inside them:
+    * A comma at the end of line text has no effect if the next line text
+      starts with a container tail.
+    * For all other cases of commas at the end of data containers, their
+      validity and effect is inherited from ECMAScript.
+
 
 
 Related projects
 ================
+
   * [JSONv5](http://json5.org/): A lot more flexible, and thus a lot harder
-    to safely handle with low-level tools like `sed`.
+    to safely handle with low-level tools like [sed](http://sed.sf.net/).
   * [strip-json-comments](https://github.com/sindresorhus/strip-json-comments)
 
 
