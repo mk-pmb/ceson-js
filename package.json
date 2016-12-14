@@ -1,0 +1,37 @@
+{ "name": "ceson",
+  "version": "0.0.1",
+  "description": "Yet another JSON derivative, aimed to be easy to use for humans as well as for low-level tools.",
+  "keywords": [
+    "comments",
+    "data notation",
+    "JSON",
+    "trailing comma"
+  ],
+
+  "author": "M.K. (https://github.com/mk-pmb)",
+  "homepage": "https://github.com/mk-pmb/ceson-js#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mk-pmb/ceson-js.git"
+  },
+  "bugs": {
+    "url": "https://github.com/mk-pmb/ceson-js/issues"
+  },
+
+  "private": false, "license": "ISC",
+
+  "main": "ceson.js",
+  "scripts": {
+    "test": "nodejs test/all.js"
+  },
+  "directories": {
+    "doc": "doc",
+    "test": "test"
+  },
+
+  "dependencies": {},
+  "devDependencies": { "equal-pmb": "^0.1.0" },
+
+
+  "npm vs. BOM = Unexpected token": "-*- coding: UTF-8 -*-"
+}

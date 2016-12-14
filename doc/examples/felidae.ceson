@@ -1,0 +1,67 @@
+﻿/** Data about two pillars of the internets:
+ *  cats and wikipedia.
+ **/
+{ "": "family",
+  // ^-- that empty string means a tag name for xmlattrdict.
+  "id": "Felidae",
+  "wp-en": { "": "wp", "oldid": 742264157 },
+  // ^- Where to find them in wikipedia. The JSON example file has this
+  //    at the bottom in order to work-around JSON's comma policy,
+  //    but it's much more practical to have the meta data near the
+  //    identifier that it belongs to, and then list the subcategories.
+
+  "Pantherinae": { "": "subfamily",
+    "wp-en": { "": "wp", "oldid": 736789580 },
+
+    "Panthera": {
+    },/* lions and such */  /* not that much internet related, are they? */
+
+    "Neofelis": {
+      // ^-- roughly translates as "new cats"
+      "": "genus", "wp-en": { "": "wp", "oldid": 734888346 },
+      "nebulosa": { "": "species", "wp-en": { "": "wp", "oldid": 742251401 } },
+      // ^-- cloud cat. perfect for memes hosted on cloud services.
+    },
+  /* } and comma ahead: */                                              }   ,
+
+  "Felinae": { "": "subfamily",
+    // ^-- just here for the bobcat, internet-related because of xkcd.
+    "wp-en": { "": "wp", "oldid": 740542430 },
+    "Lynx": { "": "genus",
+      "wp-en": { "": "wp", "oldid": 743398978 },
+      "rufus": { "": "species", "wp-en": { "": "wp", "oldid": 742216395 } },
+    },
+  }  ,
+}   // however, you can't have commas after the outermost value.
+
+
+/* foo
+
+      bar
+
+          // not a line comment
+
+just part of some block comment's text. */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// vim: ft=javascript : # help github's syntax highlighting
