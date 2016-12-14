@@ -27,7 +27,7 @@ CESON is mostly like JSON, but:
     restrictions for easier parsing.
     * In lines where a comment starts, line text in front of that line's
       first comment is restricted to any combination of simplespace, commas,
-      and container heads.
+      container heads, and container tails.
     * The end of each block comment can be followed by optional simplespace,
       after which it must be followed by either:
       * end of line (comment is the last part of line text), or
