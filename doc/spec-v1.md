@@ -6,7 +6,7 @@ For comparison with others, see [README](../README.md).
 
 CESON is mostly like [JSON][json-spec], but:
 
-  * It will always be a strict subset of ECMAScript.
+  * It will always be a strict subset of ECMAScript version 3.
   * Definition of whitespace and acceptable line endings is inherited from
     the ECMAScript spec, to avoid problems with Unicode line terminators.
     * For increased compatibility, outside of values, CESON parsers should
@@ -39,8 +39,9 @@ CESON is mostly like [JSON][json-spec], but:
     * The plus sign is allowed only at the start or end or on both sides of
       line text. (Read: not in the middle.)
     * String continuation does not impose any implicit limits about blank
-      lines or comments, or about what kinds of strings can be concatenated.
-      (Read: Expect comments between parts of strings, even in object keys.)
+      lines or comments. (Read: Expect comments between parts of strings.)
+    * Although string concatenation in object keys is invalid (not valid in
+      ES3), parsers may optionally support it.
   * Commas at the end of data containers, inside them:
     * The last value in a container may be followed by optional simplespace
       and a comma, if that comma is the last part of line text.
@@ -49,6 +50,16 @@ CESON is mostly like [JSON][json-spec], but:
       to arrays that had a trailing comma after their last value.)
     * For all other cases of commas at the end of data containers, their
       validity and effect is inherited from ECMAScript.
+  * Wrapper code compatibility (JSONP, CommonJS, AMD):
+    * Only in the first line of input: A "data start marker" is any of both
+      characters `(` (U+0028 left parenthesis) and `=` (U+003D equals sign).
+      If line text starts with a letter from the "Basic Latin" Unicode block
+      (`A`..`Z`, `a`..`z`) and contains at least one data start marker,
+      line text is ignored from its start up to and including the first
+      data start marker.
+    * Only in the last non-blank line of input: Any combination of
+      `)` (U+0029 right parenthesis) and `;` (U+003B semicolon) at the end
+      of line text is ignored.
 
 
 

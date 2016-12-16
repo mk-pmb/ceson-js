@@ -2,7 +2,7 @@
  *  cats and wikipedia.
  *  Based on the npm package "exdata-taxonomy-misc-felidae".
  **/
-{ "": "family",
+module.exports = { "": "family",
   // ^-- that empty string means a tag name for xmlattrdict.
   "id": "Felidae",
   "wp-en-oldid": 742264157,
@@ -46,7 +46,7 @@
         + "oldid": 742216395 },
     },
   }  ,
-}   // however, you can't have commas after the outermost value.
+};
 
 
 /* foo
