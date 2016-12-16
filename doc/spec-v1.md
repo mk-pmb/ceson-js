@@ -35,8 +35,12 @@ CESON is mostly like [JSON][json-spec], but:
       * any combination of simplespace, commas, and container tails.
   * You can continue a string in a new line by adding its parts with the plus
     operator (`+`).
-    * The plus sign has to be at the start or end of line text.
-      A line can have plus signs on both sides of its line text.
+    * The plus sign has to be on the same line as one of the string parts.
+    * The plus sign is allowed only at the start or end or on both sides of
+      line text. (Read: not in the middle.)
+    * String continuation does not impose any implicit limits about blank
+      lines or comments, or about what kinds of strings can be concatenated.
+      (Read: Expect comments between parts of strings, even in object keys.)
   * Commas at the end of data containers, inside them:
     * The last value in a container may be followed by optional simplespace
       and a comma, if that comma is the last part of line text.
@@ -48,7 +52,11 @@ CESON is mostly like [JSON][json-spec], but:
 
 
 
+Variant: CESON light
+--------------------
 
+  * No block comments.
+  * String continuation's plus sign is allowed only at the end of line text.
 
 
 

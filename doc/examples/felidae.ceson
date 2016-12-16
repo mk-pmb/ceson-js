@@ -32,7 +32,18 @@
     "wp-en-oldid": 740542430,
     "Lynx": { "": "genus",
       "wp-en-oldid": 743398978,
-      "rufus": { "": "species", "wp-en-oldid": 742216395 },
+      "rufus": { "": "species", "wp-"
+
+        // string concatenation in an identifier,
+        /* interrupted by comments and blank lines. */
+
+        + "en-"
+
+        // also empty string parts.
+
+        + ""
+
+        + "oldid": 742216395 },
     },
   }  ,
 }   // however, you can't have commas after the outermost value.

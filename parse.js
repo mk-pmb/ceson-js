@@ -5,6 +5,7 @@
 (function (EX, trim) {
   'use strict';
 
+  //function debugp() { return console.warn.apply(console, arguments); }
   var startCmt = /^([\s,\[\{\}\]]*)\/(\*|\/)/, endBlkCmt = /\*\/([\s,\]\}]*)$/;
 
   trim = (''.trim ? function (s) { return s.trim(); } : function (s) {
@@ -25,29 +26,35 @@
     var json = [], inBlockComment = false, strConcat = false, afterCmt;
     ceson = ceson.split(/\n\s*/);
     if (ceson[0].slice(0, 1) === '\uFEFF') { ceson[0] = ceson[0].slice(1); }
-    function parseLine(ln) {
+    function parseLine(ln, lnIdx) {
       ln = trim(ln);
-      if (!ln) { return; }
+      //debugp(lnIdx + 1, { trimmed: ln });
+      if (!ln) { return lnIdx; }
       if (inBlockComment) {
         afterCmt = endBlkCmt.exec(ln);
+        //debugp('    ', { inBlkEnd: (afterCmt && afterCmt[0]) });
         if (!afterCmt) { return; }
         inBlockComment = false;
         ln = trim(afterCmt[1]);
       }
       inBlockComment = startCmt.exec(ln);
+      //debugp('    ', { startCmt: (inBlockComment && inBlockComment[0]) });
       if (inBlockComment) {
-        ln = inBlockComment[1];
         if (inBlockComment[2] === '/') {
           // line comment. there can't be anything after it.
+          ln = inBlockComment[1];
           inBlockComment = false;
         } else {
           // block comment. does it end in the same line?
           afterCmt = endBlkCmt.exec(ln);
+          ln = inBlockComment[1];
+          //debugp('    ', { oneLnBlk: (afterCmt && afterCmt[1]) });
           inBlockComment = !afterCmt;
           if (afterCmt) { ln += afterCmt[1]; }
         }
         ln = trim(ln);
       }
+      //debugp('    ', { SWITCHING: ln, concat: strConcat });
       switch (ln[0]) {
       case undefined:
         return;
@@ -65,6 +72,7 @@
       }
       strConcat = (ln.slice(-1) === '+');
       if (strConcat) { ln = ln.replace(/"\s*\+$/, ''); }
+      //debugp('    ', { ln: ln }, (strConcat ? '+CONCAT+' : '-'));
       json.push(ln);
     }
     ceson.forEach(parseLine);

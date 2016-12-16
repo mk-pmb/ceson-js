@@ -1,7 +1,11 @@
 ﻿{ "": "family", "id": "Felidae", "wp-en-oldid": 742264157,
   "Pantherinae": {
-    "": "subfamily", "wp-en-oldid": 736789580,
-    "Panthera": {}
+    "Panthera": {},
+    "Neofelis": {
+      "nebulosa": { "": "species", "wp-en-oldid": 742251401 },
+      "": "genus", "wp-en-oldid": 734888346
+    },
+    "": "subfamily", "wp-en-oldid": 736789580
   },
   "Felinae": {
     "": "subfamily", "wp-en-oldid": 740542430,
