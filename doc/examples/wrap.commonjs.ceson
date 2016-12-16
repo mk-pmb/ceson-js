@@ -1,0 +1,4 @@
+﻿module.exports = {
+  "wrapped": true,
+  "style": "commonjs",
+};

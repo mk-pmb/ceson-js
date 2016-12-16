@@ -1,0 +1,4 @@
+﻿define({
+  "wrapped": true,
+  "style": "amd",
+});

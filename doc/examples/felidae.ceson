@@ -2,7 +2,7 @@
  *  cats and wikipedia.
  *  Based on the npm package "exdata-taxonomy-misc-felidae".
  **/
-module.exports = { "": "family",
+{ "": "family",
   // ^-- that empty string means a tag name for xmlattrdict.
   "id": "Felidae",
   "wp-en-oldid": 742264157,
@@ -11,9 +11,7 @@ module.exports = { "": "family",
   //    but it's much more practical to have the meta data near the
   //    identifier that it belongs to, and then list the subcategories.
 
-  "Pantherinae": { "": "sub"
-    + "fam" +
-    "ily",
+  "Pantherinae": { "": "subfamily",
     "wp-en-oldid": 736789580,
 
     "Panthera": {
@@ -32,21 +30,10 @@ module.exports = { "": "family",
     "wp-en-oldid": 740542430,
     "Lynx": { "": "genus",
       "wp-en-oldid": 743398978,
-      "rufus": { "": "species", "wp-"
-
-        // string concatenation in an identifier,
-        /* interrupted by comments and blank lines. */
-
-        + "en-"
-
-        // also empty string parts.
-
-        + ""
-
-        + "oldid": 742216395 },
+      "rufus": { "": "species", "wp-en-oldid": 742216395 },
     },
   }  ,
-};
+}   // however, you can't have commas after the outermost value.
 
 
 /* foo
