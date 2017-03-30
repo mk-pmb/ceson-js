@@ -34,7 +34,8 @@
   },
   "devDependencies": {
     "async": "^2.0.1",
-    "equal-pmb": "^0.1.9"
+    "equal-pmb": "^0.1.9",
+    "usnam-pmb": "^0.2.3"
   },
 
 
