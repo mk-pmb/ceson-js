@@ -2,4 +2,6 @@
 /* -*- tab-width: 2 -*- */
 'use strict';
 
+try { require('usnam-pmb'); } catch (ignore) {}
+
 require('./felidae.js');

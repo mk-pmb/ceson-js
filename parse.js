@@ -1,12 +1,22 @@
-﻿/*jslint indent: 2, maxlen: 80, node: true */
+﻿/*jslint indent: 2, maxlen: 80, continue: false, unparam: false */
 /* -*- tab-width: 2 -*- */
-/*global define:true */
-
-(function (EX, trim) {
+/*global define: true, module: true, require: true */
+((typeof define === 'function') && define.amd ? define : function (factory) {
+  'use strict';
+  var m = ((typeof module === 'object') && module), e = (m && m.exports);
+  if (e) { m.exports = (factory(require, e, m) || m.exports); }
+})(function (require) {
   'use strict';
 
   //function debugp() { return console.warn.apply(console, arguments); }
-  var startCmt = /^([\s,\[\{\}\]]*)\/(\*|\/)/, endBlkCmt = /\*\/([\s,\]\}]*)$/;
+  var EX, trim, parseJson = require('json-parse-pmb'),
+    startCmt = /^([\s,\[\{\}\]]*)\/(\*|\/)/, endBlkCmt = /\*\/([\s,\]\}]*)$/;
+
+
+  EX = function parseCeson(data, opts) {
+    return parseJson(EX.ceson2json(data), opts);
+  };
+
 
   trim = (''.trim ? function (s) { return s.trim(); } : function (s) {
     return (s && s.replace(/^\s+/, '').replace(/\s+$/, ''));
@@ -80,40 +90,10 @@
   }
 
 
-  EX = function parseCeson(data, syntaxErrorSymbol) {
-    data = String(data || '');
-    if (!data) { return syntaxErrorSymbol; }
-    data = ceson2json(data);
-    if (!data) { return syntaxErrorSymbol; }
-    try {
-      data = JSON.parse(data);
-    } catch (jsonErr) {
-      if (jsonErr && (typeof jsonErr === 'object')) { jsonErr.input = data; }
-      if (syntaxErrorSymbol === true) { throw jsonErr; }
-      if (typeof syntaxErrorSymbol === 'function') {
-        return syntaxErrorSymbol(jsonErr, data);
-      }
-      if (jsonErr instanceof SyntaxError) { return syntaxErrorSymbol; }
-      data = String(jsonErr);
-      if (/^\S*syntax(error|)\b/i.exec(data)) { return syntaxErrorSymbol; }
-      throw jsonErr;
-    }
-    return data;
-  };
-
-
   EX.startCmt = startCmt;
   EX.endBlkCmt = endBlkCmt;
   EX.ceson2json = ceson2json;
 
 
-  // Unified export
-  if (typeof module === 'object') {
-    if (typeof ((module || false).exports || false) === 'object') {
-      module.exports = EX;
-    }
-  }
-  if ((typeof define === 'function') && define.amd) {
-    define(function () { return EX; });
-  }
-}());
+  return EX;
+});

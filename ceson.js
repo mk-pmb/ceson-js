@@ -13,7 +13,7 @@ EX.parseCallbackData = function (readErr, data, deliver) {
   if ((!deliver) && (typeof this === 'function')) { deliver = this; }
   if (readErr) { return deliver(readErr); }
   try {
-    data = parseCeson(data, deliver.syntaxErrorSymbol);
+    data = parseCeson(data, deliver.parseOpts);
   } catch (parseErr) {
     return deliver(parseErr);
   }
@@ -25,7 +25,7 @@ EX.parseFile = function (fileOpts, deliver) {
   if (typeof fileOpts === 'string') { fileOpts = { path: fileOpts }; }
   if (fileOpts.encoding === undefined) { fileOpts.encoding = 'UTF-8'; }
   deliver = deliver.bind(fileOpts);
-  deliver.syntaxErrorSymbol = fileOpts.syntaxErrorSymbol;
+  deliver.parseOpts = fileOpts;
   fs.readFile(fileOpts.path, fileOpts, EX.parseCallbackData.bind(deliver));
 };
 

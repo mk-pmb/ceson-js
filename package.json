@@ -1,5 +1,5 @@
 { "name": "ceson",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "Yet another JSON derivative, aimed to be easy to use for humans as well as for low-level tools.",
   "keywords": [
     "comments",
@@ -29,8 +29,13 @@
     "test": "test"
   },
 
-  "dependencies": {},
-  "devDependencies": { "equal-pmb": "^0.1.0" },
+  "dependencies": {
+    "json-parse-pmb": "^1.0.0"
+  },
+  "devDependencies": {
+    "async": "^2.0.1",
+    "equal-pmb": "^0.1.9"
+  },
 
 
   "npm vs. BOM = Unexpected token": "-*- coding: UTF-8 -*-"

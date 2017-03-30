@@ -38,23 +38,17 @@ For examples, see [test/felidae.js](test/felidae.js).
 Return a CESON representation of `data` as a string.
 
 
-### .parse(ceson[, syntaxErrorSymbol])
+### .parse(ceson[, opts])
 
-Return the data represented by the string `ceson` if it can be parsed.
-If it cannot be parsed because of a syntax error, behavior depends
-on `syntaxErrorSymbol`, which can be:
+Return the data represented by the string `ceson` if it can be parsed,
+or `undefined` in case of a SyntaxError. Other errors are re-thrown.
 
-  * omitted: Return `undefined` for easy distinction from valid CESON values
-    like `null`, `false`, zero and the empty string.
-  * any string or false-y value: Return that value.
-  * `true`: Throw an error.
-  * a function: Experimental.
-    Call it with arguments `(err, input)` and return its result.
-    The `input` argument might differ from `ceson`.
-  * any other value: Fail in unreliable, mysterious ways.
+You can modify the behavior by providing a config object `opts`.
+The supported keys are:
 
-Errors that cannot be verified to be syntax errors are re-thrown.
-(Examples might include "cannot allocate buffer" or "too much recursion".)
+* `synErr`, `othErr`: Modify error handling. Documented at module
+  [json-parse-pmb](https://github.com/mk-pmb/json-parse-pmb-js)
+  since that's used under the hood.
 
 
 ### .parseFile(filename, callback)
