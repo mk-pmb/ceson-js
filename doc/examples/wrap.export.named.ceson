@@ -1,0 +1,4 @@
+﻿export named_export {
+  "wrapped": true,
+  "style": "named export",
+};

@@ -42,6 +42,7 @@
 
       // Only in first line of input: strip leading wrapper code
       ln = trim(ln
+        ).replace(/^\s*export\s+\w+\s+/, ''
         ).replace(/^[A-Za-z].*?[\(=]/, '');
     }
     ln = trim(ln);

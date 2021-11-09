@@ -1,5 +1,5 @@
 { "name": "ceson",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "Yet another JSON derivative, aimed to be easy to use for humans as well as for low-level tools.",
   "keywords": [
     "comments",
