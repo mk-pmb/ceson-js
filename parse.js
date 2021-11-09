@@ -30,14 +30,33 @@
   }
 
 
+  function wrapperCodeCompatAtEndOfLine(tx) {
+    return tx.replace(/[\);]+(\n\s*|)$/, '$1');
+  }
+
+
+  function extractLineText(ln, lnIdx) {
+    if (lnIdx === 0) {
+      // Only in first line of input: strip BOM
+      if (ln.slice(0, 1) === '\uFEFF') { ln = ln.slice(1); }
+
+      // Only in first line of input: strip leading wrapper code
+      ln = trim(ln
+        ).replace(/^[A-Za-z].*?[\(=]/, '');
+    }
+    ln = trim(ln);
+    return ln;
+  }
+
+
   function ceson2json(ceson) {
     if (!ceson) { return false; }
     if (typeof ceson !== 'string') { return false; }
     var json = [], inBlockComment = false, strConcat = false, afterCmt;
-    ceson = ceson.split(/\n\s*/);
-    if (ceson[0].slice(0, 1) === '\uFEFF') { ceson[0] = ceson[0].slice(1); }
+
     function parseLine(ln, lnIdx) {
-      ln = trim(ln);
+      ln = extractLineText(ln, lnIdx);
+
       //debugp(lnIdx + 1, { trimmed: ln });
       if (!ln) { return lnIdx; }
       if (inBlockComment) {
@@ -85,8 +104,10 @@
       //debugp('    ', { ln: ln }, (strConcat ? '+CONCAT+' : '-'));
       json.push(ln);
     }
-    ceson.forEach(parseLine);
-    return json.join('\n');
+    ceson.split(/\n/).forEach(parseLine);
+    json = json.join('\n');
+    json = wrapperCodeCompatAtEndOfLine(json);
+    return json;
   }
 
 
